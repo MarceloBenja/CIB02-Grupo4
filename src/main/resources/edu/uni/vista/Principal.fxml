@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="edu.uni.controlador.PrincipalController">
+    <top>
+        <MenuBar>
+            <Menu text="Archivo">
+                <MenuItem text="Salir" onAction="#onSalir"/>
+            </Menu>
+            <Menu text="Ayuda">
+                <MenuItem text="Acerca de" onAction="#onAcercaDe"/>
+            </Menu>
+        </MenuBar>
+    </top>
+    <center>
+        <VBox alignment="CENTER" spacing="8">
+            <Label text="Sistema de Matrícula Universitaria" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+            <Label text="Facultad de Ingeniería Eléctrica y Electrónica, UNI"/>
+        </VBox>
+    </center>
+</BorderPane>

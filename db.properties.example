@@ -1,0 +1,8 @@
+# Datos de conexión a SQL Server del Sistema de Matrícula Universitaria.
+# 1. Copie este archivo en la misma carpeta con el nombre db.properties
+# 2. Escriba en db.clave la contraseña real de su instancia.
+# db.properties está en .gitignore: nunca lo suba al repositorio.
+# Si su SQL Server no usa el puerto 1433, cámbielo en db.url (guía 5).
+db.url=jdbc:sqlserver://localhost:1433;databaseName=UNI_Matricula;encrypt=true;trustServerCertificate=true
+db.usuario=sa
+db.clave=ESCRIBA_AQUI_SU_CONTRASENA

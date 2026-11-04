@@ -1,0 +1,28 @@
+# Compilados y paquetes generados por Maven
+target/
+out/
+*.class
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+
+# IntelliJ IDEA: cada integrante lo regenera al abrir el pom.xml
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Credenciales locales: nunca se versionan (ver db.properties.example)
+db.properties
+
+# Registros y temporales
+*.log
+*.tmp
+hs_err_pid*
+
+# Archivos de bloqueo de Word al abrir documentos de docs/
+~$*
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -54,6 +54,44 @@ public class CursoDAO {
     }
 
     /**
+     * Modifica los datos de un curso existente, ubicado por su idCurso.
+     *
+     * @param curso datos nuevos del curso
+     * @throws SQLException si el curso ya no existe, el código se repite o falla la conexión
+     */
+    public void actualizar(Curso curso) throws SQLException {
+        String sql = "UPDATE Curso SET codigo = ?, nombre = ?, creditos = ?, ciclo = ? WHERE idCurso = ?";
+        try (Connection con = ConexionBD.obtener();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, curso.getCodigo());
+            ps.setString(2, curso.getNombre());
+            ps.setInt(3, curso.getCreditos());
+            ps.setInt(4, curso.getCiclo());
+            ps.setInt(5, curso.getIdCurso());
+            if (ps.executeUpdate() == 0) {
+                throw new SQLException("No existe el curso con idCurso " + curso.getIdCurso());
+            }
+        }
+    }
+
+    /**
+     * Elimina un curso.
+     *
+     * @param idCurso identificador del curso
+     * @throws SQLException si el curso ya no existe o falla la conexión
+     */
+    public void eliminar(int idCurso) throws SQLException {
+        String sql = "DELETE FROM Curso WHERE idCurso = ?";
+        try (Connection con = ConexionBD.obtener();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idCurso);
+            if (ps.executeUpdate() == 0) {
+                throw new SQLException("No existe el curso con idCurso " + idCurso);
+            }
+        }
+    }
+
+    /**
      * Indica si el error se debe a un código de curso repetido.
      *
      * @param e excepción lanzada por insertar o actualizar

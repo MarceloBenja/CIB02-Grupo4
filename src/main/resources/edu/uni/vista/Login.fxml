@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="edu.uni.controlador.LoginController" alignment="CENTER" spacing="12">
+    <padding>
+        <Insets top="30" right="40" bottom="30" left="40"/>
+    </padding>
+    <Label text="Sistema de Matrícula Universitaria" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+    <Label text="Iniciar sesión"/>
+    <TextField fx:id="txtUsuario" promptText="Usuario"/>
+    <PasswordField fx:id="txtClave" promptText="Contraseña"/>
+    <Button text="Ingresar" defaultButton="true" maxWidth="Infinity" onAction="#onIngresar"/>
+    <Label fx:id="lblMensaje" wrapText="true" style="-fx-text-fill: #711610;"/>
+</VBox>

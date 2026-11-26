@@ -1,11 +1,13 @@
 package edu.uni.controlador;
 
+import edu.uni.modelo.Usuario;
 import java.io.IOException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
 /** Controla el menú de la ventana principal. */
@@ -14,6 +16,17 @@ public class PrincipalController {
     private static final String VISTA_CURSOS = "/edu/uni/vista/Curso.fxml";
 
     @FXML private BorderPane panelPrincipal;
+    @FXML private Label lblSesion;
+
+    /**
+     * Prepara la ventana para el usuario que inició sesión.
+     *
+     * @param usuario usuario autenticado
+     */
+    public void iniciarSesion(Usuario usuario) {
+        lblSesion.setText("Sesión iniciada: " + usuario.getUsuario() + " ("
+                + usuario.getRol().getDescripcion() + ")");
+    }
 
     @FXML
     private void onSalir() {

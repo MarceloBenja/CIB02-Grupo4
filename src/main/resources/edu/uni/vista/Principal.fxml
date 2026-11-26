@@ -28,4 +28,7 @@
             <Label text="Facultad de Ingeniería Eléctrica y Electrónica, UNI"/>
         </VBox>
     </center>
+    <bottom>
+        <Label fx:id="lblSesion" style="-fx-padding: 6 10 6 10; -fx-text-fill: #444444;"/>
+    </bottom>
 </BorderPane>

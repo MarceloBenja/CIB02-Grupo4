@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="edu.uni.controlador.CursoController">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+    <top>
+        <Label text="Mantenimiento de cursos" style="-fx-font-size: 18px; -fx-font-weight: bold;">
+            <BorderPane.margin>
+                <Insets bottom="10"/>
+            </BorderPane.margin>
+        </Label>
+    </top>
+    <center>
+        <TableView fx:id="tablaCursos">
+            <columns>
+                <TableColumn fx:id="colCodigo" text="Código" prefWidth="100"/>
+                <TableColumn fx:id="colNombre" text="Nombre" prefWidth="380"/>
+                <TableColumn fx:id="colCreditos" text="Créditos" prefWidth="90"/>
+                <TableColumn fx:id="colCiclo" text="Ciclo" prefWidth="80"/>
+            </columns>
+        </TableView>
+    </center>
+    <bottom>
+        <VBox spacing="8">
+            <BorderPane.margin>
+                <Insets top="10"/>
+            </BorderPane.margin>
+            <GridPane hgap="8" vgap="6">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="70"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+                <Label text="Código" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtCodigo" promptText="Ej. CIB02" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <Label text="Nombre" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtNombre" promptText="Ej. Ingeniería de Software" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <Label text="Créditos" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtCreditos" promptText="De 1 a 6" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <Label text="Ciclo" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtCiclo" promptText="De 1 a 10" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            </GridPane>
+            <HBox spacing="8">
+                <Button text="Nuevo" onAction="#onNuevo"/>
+                <Button text="Guardar" onAction="#onGuardar" defaultButton="true"/>
+                <Button text="Eliminar" onAction="#onEliminar"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>

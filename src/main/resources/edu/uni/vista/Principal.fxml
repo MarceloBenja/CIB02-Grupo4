@@ -7,12 +7,15 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+<BorderPane fx:id="panelPrincipal" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="edu.uni.controlador.PrincipalController">
     <top>
         <MenuBar>
             <Menu text="Archivo">
                 <MenuItem text="Salir" onAction="#onSalir"/>
+            </Menu>
+            <Menu text="Oferta académica">
+                <MenuItem text="Cursos" onAction="#onCursos"/>
             </Menu>
             <Menu text="Ayuda">
                 <MenuItem text="Acerca de" onAction="#onAcercaDe"/>

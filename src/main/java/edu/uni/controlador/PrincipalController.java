@@ -1,15 +1,35 @@
 package edu.uni.controlador;
 
+import java.io.IOException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.layout.BorderPane;
 
 /** Controla el menú de la ventana principal. */
 public class PrincipalController {
+    private static final System.Logger LOG = System.getLogger(PrincipalController.class.getName());
+    private static final String VISTA_CURSOS = "/edu/uni/vista/Curso.fxml";
+
+    @FXML private BorderPane panelPrincipal;
 
     @FXML
     private void onSalir() {
         Platform.exit();
+    }
+
+    /** Muestra el mantenimiento de cursos en el centro de la ventana principal. */
+    @FXML
+    private void onCursos() {
+        try {
+            Parent vista = FXMLLoader.load(PrincipalController.class.getResource(VISTA_CURSOS));
+            panelPrincipal.setCenter(vista);
+        } catch (IOException e) {
+            LOG.log(System.Logger.Level.ERROR, "No se pudo abrir la vista de cursos", e);
+            new Alert(Alert.AlertType.ERROR, "No se pudo abrir la pantalla de cursos.").showAndWait();
+        }
     }
 
     @FXML

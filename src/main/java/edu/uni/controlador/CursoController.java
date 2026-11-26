@@ -82,7 +82,7 @@ public class CursoController implements Initializable {
     private void onGuardar() {
         String error = validar();
         if (error != null) {
-            new Alert(Alert.AlertType.WARNING, error).showAndWait();
+            Avisos.mostrar(Alert.AlertType.WARNING, error);
             return;
         }
         Curso curso = leerFormulario();
@@ -96,8 +96,8 @@ public class CursoController implements Initializable {
             onNuevo();
         } catch (SQLException e) {
             if (CursoDAO.esCodigoDuplicado(e)) {
-                new Alert(Alert.AlertType.WARNING,
-                        "Ya existe un curso con el código " + curso.getCodigo() + ".").showAndWait();
+                Avisos.mostrar(Alert.AlertType.WARNING,
+                        "Ya existe un curso con el código " + curso.getCodigo() + ".");
             } else {
                 mostrarError("No se pudo guardar el curso.", e);
             }
@@ -107,13 +107,13 @@ public class CursoController implements Initializable {
     @FXML
     private void onEliminar() {
         if (seleccionado == null) {
-            new Alert(Alert.AlertType.INFORMATION, "Seleccione en la tabla el curso que desea eliminar.")
-                    .showAndWait();
+            Avisos.mostrar(Alert.AlertType.INFORMATION,
+                    "Seleccione en la tabla el curso que desea eliminar.");
             return;
         }
         Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION,
                 "¿Eliminar el curso " + seleccionado.getCodigo() + "?", ButtonType.YES, ButtonType.NO);
-        if (confirmacion.showAndWait().orElse(ButtonType.NO) != ButtonType.YES) {
+        if (Avisos.mostrar(confirmacion).orElse(ButtonType.NO) != ButtonType.YES) {
             return;
         }
         try {
@@ -122,8 +122,8 @@ public class CursoController implements Initializable {
             onNuevo();
         } catch (SQLException e) {
             if (CursoDAO.tieneSecciones(e)) {
-                new Alert(Alert.AlertType.WARNING, "No se puede eliminar el curso "
-                        + seleccionado.getCodigo() + " porque tiene secciones registradas.").showAndWait();
+                Avisos.mostrar(Alert.AlertType.WARNING, "No se puede eliminar el curso "
+                        + seleccionado.getCodigo() + " porque tiene secciones registradas.");
             } else {
                 mostrarError("No se pudo eliminar el curso.", e);
             }
@@ -171,7 +171,7 @@ public class CursoController implements Initializable {
     /** Muestra un mensaje genérico y deja el detalle técnico en el registro, como pide la guía 5. */
     private void mostrarError(String mensaje, Exception e) {
         LOG.log(System.Logger.Level.ERROR, mensaje, e);
-        new Alert(Alert.AlertType.ERROR, mensaje + " Intente de nuevo o avise al administrador.")
-                .showAndWait();
+        Avisos.mostrar(Alert.AlertType.ERROR,
+                mensaje + " Intente de nuevo o avise al administrador.");
     }
 }

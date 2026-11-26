@@ -121,7 +121,12 @@ public class CursoController implements Initializable {
             cargarTabla();
             onNuevo();
         } catch (SQLException e) {
-            mostrarError("No se pudo eliminar el curso.", e);
+            if (CursoDAO.tieneSecciones(e)) {
+                new Alert(Alert.AlertType.WARNING, "No se puede eliminar el curso "
+                        + seleccionado.getCodigo() + " porque tiene secciones registradas.").showAndWait();
+            } else {
+                mostrarError("No se pudo eliminar el curso.", e);
+            }
         }
     }
 

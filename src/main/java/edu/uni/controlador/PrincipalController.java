@@ -44,7 +44,7 @@ public class PrincipalController {
             Navegacion.mostrarLogin((Stage) panelPrincipal.getScene().getWindow());
         } catch (IOException e) {
             LOG.log(System.Logger.Level.ERROR, "No se pudo volver al inicio de sesión", e);
-            new Alert(Alert.AlertType.ERROR, "No se pudo cerrar la sesión.").showAndWait();
+            Avisos.mostrar(Alert.AlertType.ERROR, "No se pudo cerrar la sesión.");
         }
     }
 
@@ -57,8 +57,8 @@ public class PrincipalController {
     @FXML
     private void onEnConstruccion(ActionEvent evento) {
         String opcion = ((MenuItem) evento.getSource()).getText();
-        new Alert(Alert.AlertType.INFORMATION,
-                "La opción \"" + opcion + "\" estará disponible en un próximo sprint.").showAndWait();
+        Avisos.mostrar(Alert.AlertType.INFORMATION,
+                "La opción \"" + opcion + "\" estará disponible en un próximo sprint.");
     }
 
     /** Muestra el mantenimiento de cursos en el centro de la ventana principal. */
@@ -69,7 +69,7 @@ public class PrincipalController {
             panelPrincipal.setCenter(vista);
         } catch (IOException e) {
             LOG.log(System.Logger.Level.ERROR, "No se pudo abrir la vista de cursos", e);
-            new Alert(Alert.AlertType.ERROR, "No se pudo abrir la pantalla de cursos.").showAndWait();
+            Avisos.mostrar(Alert.AlertType.ERROR, "No se pudo abrir la pantalla de cursos.");
         }
     }
 
@@ -79,6 +79,6 @@ public class PrincipalController {
         alerta.setTitle("Acerca de");
         alerta.setHeaderText("Sistema de Matrícula Universitaria");
         alerta.setContentText("Ingeniería de Software (CIB02), Grupo 4. FIEE, UNI, ciclo 2026-2.");
-        alerta.showAndWait();
+        Avisos.mostrar(alerta);
     }
 }

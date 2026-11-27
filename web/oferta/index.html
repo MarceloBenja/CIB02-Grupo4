@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Oferta académica | Sistema de Matrícula Universitaria</title>
+  <link rel="stylesheet" href="estilos.css">
+  <script src="api-simulada.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <header class="cabecera">
+    <p class="marca">Sistema de Matrícula Universitaria</p>
+    <nav aria-label="Navegación principal">
+      <ul>
+        <li><a href="#contenido" aria-current="page">Oferta académica</a></li>
+        <li><a href="#">Mi matrícula</a></li>
+        <li><a href="#">Constancia</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <h1>Oferta académica del periodo <span id="periodo">2026-2</span></h1>
+    <p class="introduccion">Consulte las secciones abiertas, sus horarios y las vacantes disponibles antes de matricularse.</p>
+
+    <section class="bloque" aria-labelledby="titulo-filtros">
+      <h2 id="titulo-filtros">Filtrar secciones</h2>
+      <form id="filtros" class="filtros" role="search">
+        <div class="campo">
+          <label for="ciclo">Ciclo</label>
+          <select id="ciclo" name="ciclo">
+            <option value="">Todos los ciclos</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="buscar">Curso o código</label>
+          <input type="search" id="buscar" name="buscar" placeholder="Ej. CIB02 o Software" autocomplete="off">
+        </div>
+        <div class="campo campo-casilla">
+          <input type="checkbox" id="con-vacantes" name="conVacantes">
+          <label for="con-vacantes">Solo secciones con vacantes</label>
+        </div>
+        <button type="reset" class="boton">Limpiar filtros</button>
+      </form>
+    </section>
+
+    <section class="bloque" aria-labelledby="titulo-resultados">
+      <h2 id="titulo-resultados">Secciones abiertas</h2>
+      <p id="estado" class="estado" role="status" aria-live="polite">Cargando la oferta del periodo...</p>
+      <table id="tabla-oferta" class="tabla">
+        <caption>Secciones del periodo ordenadas por ciclo y código del curso</caption>
+        <thead>
+          <tr>
+            <th scope="col">Código</th>
+            <th scope="col">Curso</th>
+            <th scope="col">Ciclo</th>
+            <th scope="col">Créditos</th>
+            <th scope="col">Sección</th>
+            <th scope="col">Docente</th>
+            <th scope="col">Horario</th>
+            <th scope="col">Vacantes</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p><small>Prototipo de la vista del caso de uso CU-01, Consultar oferta académica. Los datos son de ejemplo: en el sistema real llegan desde la API <code>GET /api/v1/oferta</code>.</small></p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,274 @@
+/* Presentación de la vista de oferta académica.
+   Solo decide cómo se ve; la estructura está en index.html y el comportamiento en app.js. */
+
+:root {
+  --texto: #1b1b1b;
+  --texto-suave: #4a4a4a;
+  --fondo: #f5f5f5;
+  --superficie: #ffffff;
+  --borde: #d0d0d0;
+  --acento: #1f3a5f;
+  --acento-claro: #e7edf5;
+  --agotado: #6b6b6b;
+  --radio: 6px;
+  --espacio: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--texto);
+  background: var(--fondo);
+}
+
+/* Enlace para saltar al contenido: invisible hasta que recibe el foco del teclado. */
+.saltar {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  padding: 0.5rem 1rem;
+  background: var(--superficie);
+  color: var(--acento);
+}
+
+.saltar:focus {
+  left: var(--espacio);
+}
+
+:focus-visible {
+  outline: 3px solid var(--acento);
+  outline-offset: 2px;
+}
+
+.cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio);
+  padding: 0.75rem 1.5rem;
+  background: var(--acento);
+  color: #ffffff;
+}
+
+.marca {
+  margin: 0;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.cabecera ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cabecera a {
+  display: block;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radio);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.cabecera a:hover,
+.cabecera a[aria-current="page"] {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+main {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.6rem;
+}
+
+h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.15rem;
+}
+
+.introduccion {
+  margin: 0 0 1.5rem;
+  color: var(--texto-suave);
+}
+
+.bloque {
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+
+/* Filtros en una fila que se reacomoda sola según el ancho disponible. */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--espacio);
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 12rem;
+}
+
+.campo-casilla {
+  flex-direction: row;
+  align-items: center;
+  min-width: auto;
+  padding-bottom: 0.45rem;
+}
+
+label {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.campo-casilla label {
+  font-weight: normal;
+}
+
+select,
+input[type="search"] {
+  padding: 0.45rem 0.6rem;
+  font: inherit;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--superficie);
+}
+
+.boton {
+  padding: 0.5rem 1rem;
+  font: inherit;
+  color: var(--acento);
+  background: var(--acento-claro);
+  border: 1px solid var(--acento);
+  border-radius: var(--radio);
+  cursor: pointer;
+}
+
+.estado {
+  margin: 0 0 0.75rem;
+  color: var(--texto-suave);
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla caption {
+  margin-bottom: 0.5rem;
+  text-align: left;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+.tabla th,
+.tabla td {
+  padding: 0.55rem 0.6rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--borde);
+}
+
+.tabla thead th {
+  background: var(--acento-claro);
+  font-size: 0.9rem;
+}
+
+.tabla tbody tr:hover {
+  background: #fafafa;
+}
+
+.horario {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Estado de las vacantes: el texto lo dice; el estilo solo lo refuerza. */
+.vacantes {
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.vacantes.pocas::after {
+  content: " (pocas)";
+  font-weight: normal;
+}
+
+.fila-agotada {
+  color: var(--agotado);
+}
+
+.fila-agotada .vacantes {
+  font-weight: normal;
+}
+
+.pie {
+  padding: 1rem 1.5rem 2rem;
+  text-align: center;
+  color: var(--texto-suave);
+}
+
+/* En pantallas angostas cada fila se muestra como una tarjeta: el celular no tiene ancho para ocho columnas. */
+@media (max-width: 720px) {
+  main {
+    padding: 1rem;
+  }
+
+  .tabla thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .tabla,
+  .tabla caption,
+  .tabla tbody,
+  .tabla tr,
+  .tabla td {
+    display: block;
+    width: 100%;
+  }
+
+  .tabla tr {
+    margin-bottom: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+  }
+
+  .tabla td {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 0.5rem;
+    padding: 0.3rem 0;
+    border-bottom: none;
+  }
+
+  .tabla td::before {
+    content: attr(data-etiqueta);
+    font-weight: bold;
+  }
+}

@@ -14,6 +14,8 @@ public class CursoDAO {
     private static final int ERROR_CLAVE_DUPLICADA = 2627;
     /** Código de error de SQL Server al insertar una fila repetida en un índice único. */
     private static final int ERROR_INDICE_DUPLICADO = 2601;
+    /** Código de error de SQL Server al borrar una fila que otra tabla referencia por clave foránea. */
+    private static final int ERROR_FILA_REFERENCIADA = 547;
 
     /**
      * Devuelve todos los cursos ordenados por ciclo y código.
@@ -99,5 +101,15 @@ public class CursoDAO {
      */
     public static boolean esCodigoDuplicado(SQLException e) {
         return e.getErrorCode() == ERROR_CLAVE_DUPLICADA || e.getErrorCode() == ERROR_INDICE_DUPLICADO;
+    }
+
+    /**
+     * Indica si un curso no se pudo eliminar porque tiene secciones (FK_Seccion_Curso).
+     *
+     * @param e excepción lanzada por eliminar
+     * @return true si SQL Server rechazó el borrado porque otra tabla referencia el curso
+     */
+    public static boolean tieneSecciones(SQLException e) {
+        return e.getErrorCode() == ERROR_FILA_REFERENCIADA;
     }
 }

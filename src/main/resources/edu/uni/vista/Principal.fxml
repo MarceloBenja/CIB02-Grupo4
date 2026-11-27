@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -12,10 +13,21 @@
     <top>
         <MenuBar>
             <Menu text="Archivo">
+                <MenuItem text="Cerrar sesión" onAction="#onCerrarSesion"/>
+                <SeparatorMenuItem/>
                 <MenuItem text="Salir" onAction="#onSalir"/>
             </Menu>
             <Menu text="Oferta académica">
-                <MenuItem text="Cursos" onAction="#onCursos"/>
+                <MenuItem fx:id="itemCursos" text="Cursos" onAction="#onCursos"/>
+                <MenuItem fx:id="itemSecciones" text="Secciones y horarios" onAction="#onEnConstruccion"/>
+            </Menu>
+            <Menu text="Matrícula">
+                <MenuItem text="Registrar matrícula" onAction="#onEnConstruccion"/>
+                <MenuItem text="Anular matrícula" onAction="#onEnConstruccion"/>
+                <MenuItem text="Constancia de matrícula" onAction="#onEnConstruccion"/>
+            </Menu>
+            <Menu text="Consultas">
+                <MenuItem text="Lista de matriculados" onAction="#onEnConstruccion"/>
             </Menu>
             <Menu text="Ayuda">
                 <MenuItem text="Acerca de" onAction="#onAcercaDe"/>
@@ -28,4 +40,7 @@
             <Label text="Facultad de Ingeniería Eléctrica y Electrónica, UNI"/>
         </VBox>
     </center>
+    <bottom>
+        <Label fx:id="lblSesion" style="-fx-padding: 6 10 6 10; -fx-text-fill: #444444;"/>
+    </bottom>
 </BorderPane>

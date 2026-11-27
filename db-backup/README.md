@@ -17,6 +17,9 @@ Ejecute los scripts en este orden. Cada uno se puede repetir sin error: solo cre
 | 2 | `02_tablas_matricula.sql` | Crea las tablas `Docente`, `Estudiante`, `Seccion`, `Horario` y `Matricula`, con sus reglas de negocio. |
 | 3 | `03_datos_ejemplo.sql` | Carga datos de ejemplo del periodo 2026-2: los mismos cursos y secciones del prototipo web, con personas ficticias. |
 | 4 | `04_consultas.sql` | Prueba la matrícula con control de vacantes y ejecuta las consultas principales del sistema. |
+| 5 | `05_usuarios.sql` | Crea la tabla `Usuario` para el inicio de sesión y cuatro usuarios de prueba, uno por rol. |
+
+**Usuarios de prueba** (solo para la base de ejemplo): `admin`, `registros`, `jramos` (docente) y `20261001A` (estudiante), todos con la contraseña `Matricula2026`.
 
 **En SQL Server Management Studio:** abra cada archivo con *File > Open > File* y ejecútelo completo con F5.
 
@@ -49,3 +52,4 @@ erDiagram
 | El código de estudiante tiene el formato UNI | `CK_Estudiante_codigo`: 8 dígitos y una letra. |
 | Una clase termina después de empezar | `CK_Horario_horas`. |
 | No se borra un curso que ya tiene secciones | Clave foránea `FK_Seccion_Curso`. |
+| Ninguna contraseña se guarda (RNF-02) | `Usuario` guarda solo la sal y la derivación PBKDF2-HMAC-SHA256 de cada contraseña. |
